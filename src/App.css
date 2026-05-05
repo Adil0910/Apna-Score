@@ -58,3 +58,6 @@ h2.title-h2 {
     font-size: 2rem;
     padding-inline: 18px;
 }
+#installBtn {
+  display: none;
+}

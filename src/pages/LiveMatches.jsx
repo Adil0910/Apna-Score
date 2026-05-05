@@ -46,7 +46,19 @@ const LiveMatches = () => {
   return (
     <div style={{ padding: "20px" }}>
       <h2>🏏 Matches</h2>
-
+<button
+  id="installBtn"
+  style={{
+    padding: "10px 15px",
+    background: "#0d47a1",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer"
+  }}
+>
+  📲 Install App
+</button>
       {/* 🔍 Search */}
       <input
         type="text"
