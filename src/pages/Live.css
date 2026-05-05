@@ -1,0 +1,350 @@
+/* ============================================
+   Cricket Live Scorer - Professional CSS
+   ============================================ */
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  background: #0f1923;
+  color: #e8eaf0;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+/* ---------- Container ---------- */
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ---------- Card ---------- */
+.card {
+    background: #1a2535;
+    border: 1px solid;
+    border-radius: 14px;
+    padding: 16px 18px;
+}
+
+/* ---------- Score Card (top) ---------- */
+.card.score {
+  background: linear-gradient(135deg, #0d3b6e 0%, #1a2a4a 100%);
+  border: 1px solid #1e5fa8;
+  text-align: center;
+  padding: 22px 18px;
+}
+
+.card.score h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #7aa3cc;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+.card.score h3 {
+  font-size: 13px;
+  color: #f0c040;
+  font-weight: 500;
+  margin-bottom: 10px;
+  background: rgba(240, 192, 64, 0.12);
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(240, 192, 64, 0.3);
+}
+
+.card.score h1 {
+  font-size: 46px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.card.score p {
+  font-size: 13px;
+  color: #7aa3cc;
+  margin-bottom: 6px;
+}
+
+.card.score h2[style*="green"] {
+  color: #4cda7a !important;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* ---------- Section Headings ---------- */
+.card h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5a7fa8;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #2a3a52;
+  padding-bottom: 8px;
+}
+
+/* ---------- Batting Row ---------- */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #1e2e42;
+  font-size: 14px;
+  color: #c5cfe0;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row.striker {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.row.striker span:first-child::after {
+  color: #f0c040;
+  font-size: 11px;
+}
+
+.row span:last-child {
+  font-size: 13px;
+  color: #7aa3cc;
+  font-variant-numeric: tabular-nums;
+}
+
+.row.striker span:last-child {
+  color: #a8c8f0;
+  font-weight: 500;
+}
+
+/* ---------- Ball History ---------- */
+.ball-normal,
+.ball-4,
+.ball-6,
+.ball-w {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ball-normal {
+  background: #2a3a52;
+  color: #a0b4cc;
+  border: 1px solid #3a4f6a;
+}
+
+.ball-4 {
+  background: #1bbf1b;
+  color: white;
+  border: none;
+}
+
+.ball-6 {
+    background: deeppink;
+    color: white;
+    border: none;
+}
+
+.ball-w {
+  background: red;
+  color: white;
+  border: none;
+}
+
+/* ---------- Controls ---------- */
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.controls button {
+  padding: 12px 6px;
+  border: 1px solid #2a3a52;
+  border-radius: 10px;
+  background: #1f2f44;
+  color: #c5cfe0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.controls button:hover {
+  background: #2a3f5a;
+  border-color: #3a5572;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.controls button:active {
+  transform: translateY(0);
+}
+
+/* Run buttons */
+.controls .btn-normal {
+  background: #1a3a2a;
+  border-color: #2a6040;
+  color: #4cda7a;
+}
+
+.controls .btn-normal:hover {
+  background: #1f4a35;
+  border-color: #3a8050;
+}
+
+/* 4 button */
+.controls .btn-4 {
+    background: #1bbf1b;
+    border: none;
+    color: white;
+}
+
+.controls .btn-4:hover {
+  background: rgba(59, 130, 246, 0.25);
+}
+
+/* 6 button */
+.controls .btn-6 {
+    background: deeppink;
+    color: white;
+    border: none;
+}
+.controls .btn-6:hover {
+  background: rgba(245, 158, 11, 0.25);
+}
+
+/* Wicket button */
+.controls .wicket {
+    background: red;
+    color: white;
+    font-size: 16px;
+    border: none;
+}
+
+.controls .wicket:hover {
+  background: rgba(239, 68, 68, 0.25);
+}
+
+/* Undo button */
+.controls .undo-btn {
+  grid-column: span 4;
+  background: #1a2535;
+  border-color: #3a4f6a;
+  color: #7aa3cc;
+  font-size: 13px;
+}
+
+.controls .undo-btn:hover {
+  background: #1f2f44;
+  color: #ffffff;
+}
+
+/* ---------- Bowler Select / Next Player Card ---------- */
+.card select {
+  width: 100%;
+  padding: 10px 12px;
+  background: #0f1923;
+  border: 1px solid #2a3a52;
+  border-radius: 8px;
+  color: #c5cfe0;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%237aa3cc'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.card select:focus {
+  border-color: #3a80d2;
+}
+
+.card button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #1e5fa8;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  width: 100%;
+}
+
+.card button:hover {
+  background: #2a75c8;
+}
+
+/* ---------- Bowler Stats Row ---------- */
+.card .row button {
+  width: auto;
+  padding: 5px 12px;
+  font-size: 12px;
+  background: #1f2f44;
+  border: 1px solid #2a3a52;
+  color: #7aa3cc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.card .row button:hover {
+  background: #2a3f5a;
+  color: #ffffff;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1923;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3a52;
+  border-radius: 4px;
+}
+
+/* ---------- Loading ---------- */
+h3:only-child {
+  text-align: center;
+  color: #5a7fa8;
+  padding: 40px;
+  font-size: 14px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 400px) {
+  .controls {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .card.score h1 {
+    font-size: 36px;
+  }
+}

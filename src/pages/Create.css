@@ -1,0 +1,193 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+.container-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+    font-family: auto;
+font-size: 2rem;
+}
+
+
+.section {
+  margin-bottom: 25px;
+}
+
+.section p {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+p {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-block: 1rem;
+    text-align: center;
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+}
+
+.options button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.options button:hover {
+  background: #334155;
+}
+
+.options .active {
+    background: #1ca41c;
+    color: white;
+    font-weight: bold;
+}
+.summary {
+  margin-top: 20px;
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  width: 90%;
+  max-width: 400px;
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.player-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.player-list input {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #1e293b;
+  color: white;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.save {
+  flex: 1;
+  background: #22c55e;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cancel {
+  flex: 1;
+  background: #ef4444;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.options {
+    display: flex;
+    gap: 10px;
+    width: 85%;
+}
+.container-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+select {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    background: white;
+    border: none;
+    margin-block: 0.3rem;
+    border-radius: 13px;
+    color: black;
+}
+button.complete-btn {
+    background: #1ca41c;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 3px;
+    padding-block: 0.7rem;
+    padding-inline: 1.7rem;
+}
+.nav-create {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+input {
+    font-size: 1rem;
+    padding-block: 0.8rem;
+    padding-inline: 3rem;
+}
+.start-btn {
+    padding-block: 14px;
+    padding-inline: 28px;
+    background: #1ca41c;
+    border-radius: 5px;
+    margin-top: 1rem;
+    color: white;
+    border: none;
+}
+button.add-btn {
+    background: green;
+    color: white;
+    border: none;
+    margin-right: 7px;
+    margin-top: 5px;
+    padding-block: 0.8rem;
+}
+button.sta-btns {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+}

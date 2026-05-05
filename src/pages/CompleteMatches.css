@@ -1,0 +1,155 @@
+/* ============================================
+   CompletedMatches - Professional CSS
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  background: #0f1923;
+  color: #e8eaf0;
+  min-height: 100vh;
+  padding: 20px 16px;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.container > h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.container > p {
+  color: #5a7fa8;
+  font-size: 14px;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* ---- Match Card ---- */
+.card-cm {
+  background: #1a2535;
+  border: 1px solid #2a3a52;
+  border-radius: 14px;
+  padding: 0;
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-cm:hover {
+  transform: translateY(-2px);
+  border-color: #3a5fa8;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.card-cm:active {
+  transform: translateY(0);
+}
+
+/* Top colored strip */
+.card-cm::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #1e5fa8, #4cda7a);
+  width: 100%;
+}
+
+/* Card inner layout */
+.card-inner {
+  padding: 16px 18px;
+}
+
+/* Team names heading */
+.card-cm h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+/* Stats row */
+.card-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Winner badge */
+.badge-winner {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(76, 218, 122, 0.12);
+  border: 1px solid rgba(76, 218, 122, 0.35);
+  color: #4cda7a;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.badge-winner::before {
+  content: '🏆';
+  font-size: 11px;
+}
+
+/* Target badge */
+.badge-target {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #fbbf24;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.badge-target::before {
+  content: '🎯';
+  font-size: 11px;
+}
+
+/* Arrow icon on right */
+.card-arrow {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2a3a52;
+  font-size: 18px;
+  transition: color 0.15s, right 0.15s;
+}
+
+.card-wrapper {
+  position: relative;
+}
+
+.card-wrapper:hover .card-arrow {
+  color: #3a5fa8;
+  right: 14px;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0f1923; }
+::-webkit-scrollbar-thumb { background: #2a3a52; border-radius: 4px; }
