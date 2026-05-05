@@ -62,7 +62,7 @@ const LiveMatches = () => {
 </button>
 
     </div>
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px",width:"100%",maxWidth:"600px",margin:"auto" }}>
       {/* 🔍 Search */}
       <input className="search-matches"
         type="text"
