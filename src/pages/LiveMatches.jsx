@@ -44,9 +44,10 @@ const LiveMatches = () => {
   
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>🏏 Matches</h2>
-<button
+    <>
+    <div className="navbar-Live">
+      <h2>Apna Score</h2>
+      <button
   id="installBtn"
   style={{
     padding: "10px 15px",
@@ -59,36 +60,32 @@ const LiveMatches = () => {
 >
   📲 Install App
 </button>
+
+    </div>
+    <div style={{ padding: "20px" }}>
       {/* 🔍 Search */}
-      <input
+      <input className="search-matches"
         type="text"
         placeholder="Search team..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ padding: "8px", width: "100%", marginBottom: "10px" }}
-      />
-
-      {/* 🎯 Filter */}
-      <div style={{ marginBottom: "15px" }}>
-        <button onClick={() => setFilter("live")}>Live</button>
-        <button onClick={() => setFilter("completed")}>Completed</button>
-        <button onClick={() => setFilter("all")}>All</button>
-        <button onClick={() => navigate(`/create`)} style={{ float: "right" }}>
+      />   <button className="create-btn" onClick={() => navigate(`/create`)} style={{ float: "right" }}>
           + Create Match
         </button>
+
+      {/* 🎯 Filter */}
+      <div className="btn-grp" style={{ marginBottom: "15px" }}>
+        <button className="live-btn" onClick={() => setFilter("live")}>Live</button>
+        <button className="complete-btn" onClick={() => setFilter("completed")}>Completed</button>
+        <button className="all-btn" onClick={() => setFilter("all")}>All</button>
+      
       </div>
 
       {filteredMatches.length === 0 && <p>No matches found</p>}
 
       {filteredMatches.map((m) => (
-        <div
+        <div className="live-card"
           key={m.id}
-          style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            marginBottom: "10px",
-            cursor: "pointer",
-          }}
           onClick={() => navigate(`/live/${m.id}`)}
         >
      <h3>
@@ -97,9 +94,9 @@ const LiveMatches = () => {
 </h3>
 
           {!m.winner ? (
-            <p style={{ color: "green" }}>🟢 Live</p>
+            <p className="live-card-live"> Live</p>
           ) : (
-            <p style={{ color: "red" }}>🔴 {m.winner} Won</p>
+            <p style={{ color: "red", fontWeight: "bold" }}>🔴 {m.winner} Won</p>
           )}
 
           <p>
@@ -109,6 +106,7 @@ const LiveMatches = () => {
         </div>
       ))}
     </div>
+      </>
   );
 };
 

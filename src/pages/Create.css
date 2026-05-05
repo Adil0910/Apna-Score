@@ -1,8 +1,8 @@
 body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: #0f172a;
-  color: white;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #4f83ba;
+    color: white;
 }
 
 .container-create {
@@ -59,8 +59,8 @@ p {
 }
 
 .options .active {
-    background: #1ca41c;
-    color: white;
+    background: white;
+    color: #4f83ba;
     font-weight: bold;
 }
 .summary {
@@ -84,13 +84,15 @@ p {
 }
 
 .popup-content {
-  width: 90%;
-  max-width: 400px;
-  background: #0f172a;
-  padding: 20px;
-  border-radius: 15px;
+    display: flex;
+    gap: 11px;
+    width: 90%;
+    max-width: 400px;
+    background: transparent;
+    padding: 20px;
+    border-radius: 15px;
+    flex-direction: column;
 }
-
 .player-list {
   max-height: 300px;
   overflow-y: auto;
@@ -151,12 +153,13 @@ select {
     color: black;
 }
 button.complete-btn {
-    background: #1ca41c;
-    color: white;
+    background: white;
+    color: #4f83ba;
     border: none;
     font-size: 1rem;
     border-radius: 3px;
     padding-block: 0.7rem;
+    margin-top: 1rem;
     padding-inline: 1.7rem;
 }
 .nav-create {
@@ -170,24 +173,32 @@ input {
     padding-inline: 3rem;
 }
 .start-btn {
-    padding-block: 14px;
-    padding-inline: 28px;
-    background: #1ca41c;
+    padding-block: 19px;
+    padding-inline: 40px;
+    background: transparent;
     border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: revert-layer;
     margin-top: 1rem;
+    letter-spacing: 1px;
     color: white;
-    border: none;
+    border: 1px solid;
 }
 button.add-btn {
-    background: green;
-    color: white;
+    background: white;
+    color: #4f83ba;
     border: none;
     margin-right: 7px;
+    letter-spacing: 1px;
+    font-weight: 700;
     margin-top: 5px;
-    padding-block: 0.8rem;
+    padding-block: 1rem;
 }
 button.sta-btns {
-    background: transparent;
+    background: #4f83ba;
     border: 1px solid white;
+    letter-spacing: 2px;
+    padding-block: 1rem;
     color: white;
 }

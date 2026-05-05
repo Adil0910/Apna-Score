@@ -543,11 +543,11 @@ const declareWinner = (winner) => {
         )}
       </div>
 
-      <div className="card">
-        <h3>Current Bowler</h3>
+      <div className="card-current-bowler">
+        <h3 className="-head-cur-bowler">Current Bowler</h3>
         <div className="row">
           <span>{bowling[currentBowler]?.name}</span>
-          <span>
+          <span className="spn-bowler">
             {bowling[currentBowler]?.bowling?.overs || "0.0"} -{" "}
             {bowling[currentBowler]?.bowling?.runs || 0} -{" "}
             {bowling[currentBowler]?.bowling?.wickets || 0}
@@ -577,11 +577,11 @@ const declareWinner = (winner) => {
         <h3> Bowlers</h3>
         {validBowling.map((b) => (
           <div key={b.originalIndex} className="row">
-            <span>
+            <span className="bowler-name">
               {b.originalIndex === currentBowler ? "* " : ""}
               {b.name}
             </span>
-            <span>
+            <span className="bowler-over">
               {b.bowling?.overs || "0.0"} - {b.bowling?.runs || 0} -{" "}
               {b.bowling?.wickets || 0}
             </span>

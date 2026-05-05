@@ -10,13 +10,12 @@
 }
 
 body {
-  font-family: 'Segoe UI', 'Inter', sans-serif;
-  background: #0f1923;
-  color: #e8eaf0;
-  min-height: 100vh;
-  padding: 16px;
+    font-family: 'Segoe UI', 'Inter', sans-serif;
+    background: #cfcfcf9c;
+    color: #e8eaf0;
+    min-height: 100vh;
+    padding: 16px;
 }
-
 /* ---------- Container ---------- */
 .container {
   max-width: 520px;
@@ -28,27 +27,31 @@ body {
 
 /* ---------- Card ---------- */
 .card {
-    background: #1a2535;
+    background: white;
     border: 1px solid;
     border-radius: 14px;
     padding: 16px 18px;
 }
-
+.card-current-bowler{
+   background: #4f83ba;
+    border: 1px solid;
+    border-radius: 14px;
+    padding: 16px 18px;
+}
 /* ---------- Score Card (top) ---------- */
 .card.score {
-  background: linear-gradient(135deg, #0d3b6e 0%, #1a2a4a 100%);
-  border: 1px solid #1e5fa8;
-  text-align: center;
-  padding: 22px 18px;
+    background: #4f83ba;
+    border: 1px solid #1e5fa8;
+    text-align: center;
+    padding: 22px 18px;
 }
-
 .card.score h2 {
-  font-size: 13px;
-  font-weight: 500;
-  color: #7aa3cc;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
 }
 
 .card.score h3 {
@@ -73,9 +76,9 @@ body {
 }
 
 .card.score p {
-  font-size: 13px;
-  color: #7aa3cc;
-  margin-bottom: 6px;
+    font-size: 13px;
+    color: white;
+    margin-bottom: 6px;
 }
 
 .card.score h2[style*="green"] {
@@ -84,7 +87,20 @@ body {
   font-weight: 600;
   margin-top: 8px;
 }
+.h3.-head-cur-bowler {
+    font-size: 13px;
+    color: white;
+    border-bottom: 1px solid;
+    padding-bottom: 1rem;
 
+}
+span.bowler-name {
+    color: #4f83ba;
+    font-weight: 600;
+}
+span.bowler-over {
+    color: #4f83ba !important;
+}
 /* ---------- Section Headings ---------- */
 .card h3 {
   font-size: 12px;
@@ -113,8 +129,8 @@ body {
 }
 
 .row.striker {
-  color: #ffffff;
-  font-weight: 600;
+    color: #4f83ba;
+    font-weight: 600;
 }
 
 .row.striker span:first-child::after {
@@ -123,9 +139,9 @@ body {
 }
 
 .row span:last-child {
-  font-size: 13px;
-  color: #7aa3cc;
-  font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    color: white;
+    font-variant-numeric: tabular-nums;
 }
 
 .row.striker span:last-child {
