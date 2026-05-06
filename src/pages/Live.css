@@ -18,25 +18,30 @@ body {
 }
 /* ---------- Container ---------- */
 .container {
-  max-width: 520px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-block: 1rem;
+    gap: 12px;
+    align-items: center;
 }
 
 /* ---------- Card ---------- */
 .card {
     background: white;
-    border: 1px solid;
+    border: 1px solid #4f83ba;
+    width: 90%;
     border-radius: 14px;
     padding: 16px 18px;
 }
+
 .card-current-bowler{
    background: #4f83ba;
     border: 1px solid;
     border-radius: 14px;
     padding: 16px 18px;
+    width: 90%;
 }
 /* ---------- Score Card (top) ---------- */
 .card.score {
