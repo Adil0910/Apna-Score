@@ -3,11 +3,14 @@ import { db } from "../firebase";
 import { ref, onValue } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import "./LiveMatches.css";
+import InstallPWA from "../components/InstallPWA";
 
 const LiveMatches = () => {
   const [allMatches, setAllMatches] = useState([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("live"); // live | completed | all
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+const [isInstalled, setIsInstalled] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,6 +28,22 @@ const LiveMatches = () => {
       setAllMatches(formatted);
     });
   }, []);
+
+useEffect(() => {
+  const handler = (e) => {
+    e.preventDefault();
+    setDeferredPrompt(e); // save prompt
+  };
+
+  window.addEventListener("beforeinstallprompt", handler);
+
+  // check if already installed
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    setIsInstalled(true);
+  }
+
+  return () => window.removeEventListener("beforeinstallprompt", handler);
+}, []);
 
   // 🔎 Apply filter + search
   const filteredMatches = allMatches.filter((m) => {
@@ -48,20 +67,7 @@ const LiveMatches = () => {
     <>
     <div className="navbar-box">
       <h2>Apna Score</h2>
-      <button
-  id="installBtn"
-  style={{
-    padding: "10px 15px",
-    background: "#fbfdff",
-    color: "#0d47a1",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer"
-  }}
->
-   Install App
-</button>
-
+<InstallPWA />
     </div>
       {/* 🔍 Search */}
       <div className="search-box">
