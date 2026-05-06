@@ -10,7 +10,7 @@
 
 body {
   font-family: 'Segoe UI', 'Inter', sans-serif;
-  background: #0f1923;
+  background: #0f1923 !important;
   color: #e8eaf0;
   min-height: 100vh;
   padding: 20px 16px;
@@ -26,14 +26,15 @@ body {
 
 /* ---- Match Title Card ---- */
 .match-title-card {
-  background: linear-gradient(135deg, #0d3b6e 0%, #1a2a4a 100%);
-  border: 1px solid #1e5fa8;
-  border-radius: 14px;
-  padding: 20px 18px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    background: linear-gradient(135deg, #0d3b6e 0%, #1a2a4a 100%);
+    border: 1px solid #1e5fa8;
+    border-radius: 14px;
+    width: 100%;
+    padding: 20px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .match-title-card h2 {
@@ -58,13 +59,14 @@ body {
 
 /* ---- Dropdown ---- */
 .dropdown-wrapper {
-  background: #1a2535;
-  border: 1px solid #2a3a52;
-  border-radius: 12px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    background: #1a2535;
+    border: 1px solid #2a3a52;
+    border-radius: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .dropdown-wrapper label {
@@ -104,6 +106,7 @@ body {
   background: #1a2535;
   border: 1px solid #2a3a52;
   border-radius: 14px;
+  width: 100%;
   overflow: hidden;
 }
 

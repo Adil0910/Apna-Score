@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { ref, onValue } from "firebase/database";
 import { useNavigate } from "react-router-dom";
+import "./LiveMatches.css";
 
 const LiveMatches = () => {
   const [allMatches, setAllMatches] = useState([]);
@@ -45,34 +46,39 @@ const LiveMatches = () => {
 
   return (
     <>
-    <div className="navbar-Live">
+    <div className="navbar-box">
       <h2>Apna Score</h2>
       <button
   id="installBtn"
   style={{
     padding: "10px 15px",
-    background: "#0d47a1",
-    color: "white",
+    background: "#fbfdff",
+    color: "#0d47a1",
     border: "none",
     borderRadius: "8px",
     cursor: "pointer"
   }}
 >
-  📲 Install App
+   Install App
 </button>
 
     </div>
-    <div style={{ padding: "20px",width:"100%",maxWidth:"600px",margin:"auto" }}>
       {/* 🔍 Search */}
-      <input className="search-matches"
+      <div className="search-box">
+        <input className="search-matches"
         type="text"
         placeholder="Search team..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-      />   <button className="create-btn" onClick={() => navigate(`/create`)} style={{ float: "right" }}>
+      />   
+
+      </div>
+      <div className="create-box">
+        <button className="create-btn" onClick={() => navigate(`/create`)} >
           + Create Match
         </button>
-
+      </div>
+      
       {/* 🎯 Filter */}
       <div className="btn-grp" style={{ marginBottom: "15px" }}>
         <button className="live-btn" onClick={() => setFilter("live")}>Live</button>
@@ -81,8 +87,8 @@ const LiveMatches = () => {
       
       </div>
 
-      {filteredMatches.length === 0 && <p>No matches found</p>}
-
+      {filteredMatches.length === 0 && <p className="msg-matches">No matches found</p>}
+<div className="card-boxlive">
       {filteredMatches.map((m) => (
         <div className="live-card"
           key={m.id}
@@ -104,8 +110,7 @@ const LiveMatches = () => {
             {m.current?.over}.{m.current?.balls})
           </p>
         </div>
-      ))}
-    </div>
+      ))}</div>
       </>
   );
 };

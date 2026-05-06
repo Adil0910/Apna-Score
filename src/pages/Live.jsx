@@ -34,44 +34,59 @@ const Live = () => {
     match.current.battingTeam === match.teamA ? "playersA" : "playersB";
   const bowlingKey = battingKey === "playersA" ? "playersB" : "playersA";
 
-  const batting = JSON.parse(JSON.stringify(match[battingKey]));
-  const bowling = JSON.parse(JSON.stringify(match[bowlingKey]));
+const batting = structuredClone(match[battingKey]);
+const bowling = structuredClone(match[bowlingKey]);
 
   const currentBowler = match.current.bowler || 0;
 
-  const updateState = (data) => {
-    const prevState = {
-      playersA: match.playersA,
-      playersB: match.playersB,
-      current: match.current,
-    };
-    const updatedData = {};
-    Object.keys(data).forEach((key) => {
-      if (key.startsWith("current/")) {
-        updatedData[`current/${key.split("/")[1]}`] = data[key];
-      } else {
-        updatedData[key] = data[key];
-      }
-    });
-    update(matchRef, { ...updatedData, lastState: prevState });
+const updateState = (data) => {
+  const prevState = {
+    playersA: match.playersA,
+    playersB: match.playersB,
+    current: match.current,
   };
 
-  const undoLast = () => {
-    if (!match.lastState) {
-      alert("No action to undo");
-      return;
+  const historyStack = match.historyStack || [];
+
+  const updatedData = {};
+  Object.keys(data).forEach((key) => {
+    if (key.startsWith("current/")) {
+      updatedData[`current/${key.split("/")[1]}`] = data[key];
+    } else {
+      updatedData[key] = data[key];
     }
-    update(matchRef, {
-      playersA: match.lastState.playersA,
-      playersB: match.lastState.playersB,
-      current: match.lastState.current,
-      lastState: null,
-    });
-    setShowBowlerSelect(false);
-    setNewBowler(null);
-    setShowNextPlayer(false);
-    setNextPlayerIndex(null);
-  };
+  });
+
+  update(matchRef, {
+    ...updatedData,
+    historyStack: [...historyStack, prevState], // ✅ push karo
+  });
+};
+
+const undoLast = () => {
+  const historyStack = match.historyStack || [];
+
+  if (historyStack.length === 0) {
+    alert("No action to undo");
+    return;
+  }
+
+  const lastState = historyStack[historyStack.length - 1];
+  const newStack = historyStack.slice(0, -1);
+
+  update(matchRef, {
+    playersA: lastState.playersA,
+    playersB: lastState.playersB,
+    current: lastState.current,
+    historyStack: newStack, // ✅ pop karo
+  });
+
+  setShowBowlerSelect(false);
+  setNewBowler(null);
+  setShowNextPlayer(false);
+  setNextPlayerIndex(null);
+};
+
 
   const updateBowlerBall = () => {
     bowling[currentBowler].bowling.balls =
@@ -145,8 +160,8 @@ const Live = () => {
       (bowling[currentBowler].bowling.runs || 0) + run;
     updateBowlerBall();
 
-    history.push(run.toString());
-    if (history.length > 6) history.shift();
+let newHistory = [...history, run.toString()];
+if (newHistory.length > 6) newHistory = newHistory.slice(-6);
 
     if (run % 2 === 1) [newStriker, newNonStriker] = [newNonStriker, newStriker];
 
@@ -165,7 +180,7 @@ const Live = () => {
       "current/over": newOver,
       "current/striker": newStriker,
       "current/nonStriker": newNonStriker,
-      "current/history": history,
+      "current/history": newHistory,
     };
 
     const newTotalBalls = newOver * 6 + newBalls;
@@ -228,8 +243,8 @@ const Live = () => {
       (bowling[currentBowler].bowling.wickets || 0) + 1;
     updateBowlerBall();
 
-    history.push("W");
-    if (history.length > 6) history.shift();
+  let newHistory = [...history, "W"];
+if (newHistory.length > 6) newHistory = newHistory.slice(-6);
 
     let newStriker = striker;
     let newNonStriker = nonStriker;
@@ -252,7 +267,7 @@ const Live = () => {
       "current/over": over,
       "current/striker": newStriker,
       "current/nonStriker": newNonStriker,
-      "current/history": history,
+      "current/history": newHistory,
     });
 
     if (isAllOut) {
@@ -284,17 +299,17 @@ const Live = () => {
   const addWide = () => {
     let { runs, history = [] } = match.current;
     runs += 1;
-    history.push("Wd");
-    if (history.length > 6) history.shift();
-    updateState({ "current/runs": runs, "current/history": history });
+let newHistory = [...history, "Wd"];
+if (newHistory.length > 6) newHistory = newHistory.slice(-6);
+    updateState({ "current/runs": runs, "current/history": newHistory });
   };
 
   const addNoBall = () => {
     let { runs, history = [] } = match.current;
     runs += 1;
-    history.push("Nb");
-    if (history.length > 6) history.shift();
-    updateState({ "current/runs": runs, "current/history": history });
+  let newHistory = [...history, "Nb"];
+if (newHistory.length > 6) newHistory = newHistory.slice(-6);
+    updateState({ "current/runs": runs, "current/history": newHistory });
   };
 
   const addNoBallRun = (run) => {
@@ -303,8 +318,8 @@ const Live = () => {
     batting[striker].batting.runs = (batting[striker].batting.runs || 0) + run;
     bowling[currentBowler].bowling.runs =
       (bowling[currentBowler].bowling.runs || 0) + run + 1;
-    history.push(`Nb+${run}`);
-    if (history.length > 6) history.shift();
+  let newHistory = [...history, `Nb+${run}`];
+if (newHistory.length > 6) newHistory = newHistory.slice(-6);
     if (run % 2 === 1) [striker, nonStriker] = [nonStriker, striker];
     updateState({
       [battingKey]: batting,
@@ -312,7 +327,7 @@ const Live = () => {
       "current/runs": runs,
       "current/striker": striker,
       "current/nonStriker": nonStriker,
-      "current/history": history,
+      "current/history": newHistory,
     });
   };
 
@@ -327,8 +342,8 @@ const Live = () => {
     bowling[currentBowler].bowling.runs =
       (bowling[currentBowler].bowling.runs || 0) + run;
     updateBowlerBall();
-    history.push(`Lb${run}`);
-    if (history.length > 6) history.shift();
+   let newHistory = [...history, `Lb${run}`];
+if (newHistory.length > 6) newHistory = newHistory.slice(-6);
     if (run % 2 === 1) [striker, nonStriker] = [nonStriker, striker];
     if (balls === 6) {
       over += 1;
@@ -344,7 +359,7 @@ const Live = () => {
           "current/over": over,
           "current/striker": striker,
           "current/nonStriker": nonStriker,
-          "current/history": history,
+          "current/history": newHistory,
         });
         endInnings();
         return;
@@ -357,7 +372,7 @@ const Live = () => {
       "current/over": over,
       "current/striker": striker,
       "current/nonStriker": nonStriker,
-      "current/history": history,
+      "current/history": newHistory,
     });
   };
 
@@ -395,8 +410,8 @@ const Live = () => {
       (bowling[currentBowler].bowling.wickets || 0) + 1;
     updateBowlerBall();
 
-    history.push(`W+${run}`);
-    if (history.length > 6) history.shift();
+    let newHistory = [...history, `W+${run}`];
+if (newHistory.length > 6) newHistory = newHistory.slice(-6);
 
     if (run % 2 === 1) [striker, nonStriker] = [nonStriker, striker];
 
@@ -414,7 +429,7 @@ const Live = () => {
           "current/wickets": wickets,
           "current/balls": balls,
           "current/over": over,
-          "current/history": history,
+          "current/history": newHistory,
         });
         endInnings();
         return;
@@ -433,7 +448,7 @@ const Live = () => {
       "current/over": over,
       "current/striker": striker,
       "current/nonStriker": nonStriker,
-      "current/history": history,
+      "current/history": newHistory,
     });
 
     if (isAllOut) {

@@ -28,7 +28,7 @@ const CompletedMatches = () => {
 
   return (
     <div className="container">
-    <h2>🏁 Completed Matches</h2>
+    <h2> Completed Matches</h2>
 
     {matches.length === 0 && <p>No matches completed yet</p>}
 

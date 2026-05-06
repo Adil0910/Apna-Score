@@ -7,31 +7,31 @@
   margin: 0;
   padding: 0;
 }
-
-body {
-  font-family: 'Segoe UI', 'Inter', sans-serif;
-  background: #0f1923;
-  color: #e8eaf0;
-  min-height: 100vh;
-  padding: 20px 16px;
+body{
+  background: white!important;
 }
 
+
 .container {
-  max-width: 520px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
 }
 
 .container > h2 {
-  font-size: 20px;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    border-bottom: 2px solid;
+    padding-bottom: 0.3rem;
+    color: #194be2ad;
+    margin-bottom: 4px;
+    display: flex;
+    margin-top: 2rem;
+    align-items: center;
+    gap: 8px;
 }
 
 .container > p {
@@ -43,12 +43,12 @@ body {
 
 /* ---- Match Card ---- */
 .card-cm {
-  background: #1a2535;
-  border: 1px solid #2a3a52;
-  border-radius: 14px;
-  padding: 0;
-  overflow: hidden;
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    background: #183d64;
+    border: 1px solid #2a3a52;
+    border-radius: 14px;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card-cm:hover {
@@ -63,11 +63,11 @@ body {
 
 /* Top colored strip */
 .card-cm::before {
-  content: '';
-  display: block;
-  height: 4px;
-  background: linear-gradient(90deg, #1e5fa8, #4cda7a);
-  width: 100%;
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, #00edf57a, #0b53ded9);
+    width: 100%;
 }
 
 /* Card inner layout */
@@ -135,13 +135,15 @@ body {
   right: 18px;
   top: 50%;
   transform: translateY(-50%);
-  color: #2a3a52;
+  color: white;
   font-size: 18px;
   transition: color 0.15s, right 0.15s;
 }
 
 .card-wrapper {
-  position: relative;
+    width: 82%;
+    position: relative;
+    background: white;
 }
 
 .card-wrapper:hover .card-arrow {
