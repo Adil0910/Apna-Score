@@ -145,6 +145,7 @@ createdAt: Date.now(),
 
   return (
     <>
+    <div className="main-container-create">
      <div className="nav-create"><button className="complete-btn" onClick={() => navigate(`/completed`)}>
   View Completed Matches
 </button></div>
@@ -245,6 +246,7 @@ createdAt: Date.now(),
           </div>
         </div>
       )}
+    </div>
     </div>
     </>
   );

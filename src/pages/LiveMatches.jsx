@@ -100,16 +100,16 @@ useEffect(() => {
           key={m.id}
           onClick={() => navigate(`/live/${m.id}`)}
         >
-     <h3>
-  {typeof m.teamA === "object" ? m.teamA?.name : m.teamA} vs{" "}
-  {typeof m.teamB === "object" ? m.teamB?.name : m.teamB}
-</h3>
-
+ 
           {!m.winner ? (
             <p className="live-card-live"> Live</p>
           ) : (
-            <p style={{ color: "red", fontWeight: "bold" }}>🔴 {m.winner} Won</p>
+            <p style={{ color: "#27ff1af0", fontWeight: "bold" }}> {m.winner} Won</p>
           )}
+    <h3>
+  {typeof m.teamA === "object" ? m.teamA?.name : m.teamA} vs{" "}
+  {typeof m.teamB === "object" ? m.teamB?.name : m.teamB}
+</h3>
 
           <p>
             {m.current?.runs}/{m.current?.wickets} (

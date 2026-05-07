@@ -94,14 +94,22 @@ p.msg-matches {
 }
 .live-card {
     margin-block: 1rem;
-    background: white;
-    box-shadow: 0px 0px 13px #97797963;
+    background: #4f83ba;
     padding: 1rem;
     gap: 17px;
     width: 77%;
+    border-radius: 25px;
     border: 1px solid;
-    color: #4f83ba;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.live-card-live {
+    color: #4f83ba;
+    font-weight: bold;
+    background: #ffffff;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
 }

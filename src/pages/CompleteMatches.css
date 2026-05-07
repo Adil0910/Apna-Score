@@ -7,26 +7,24 @@
   margin: 0;
   padding: 0;
 }
-body{
-  background: white!important;
+body {
+    background: #183d64 !important;
 }
-
 
 .container {
     max-width: 520px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    background: #183d64;
     gap: 14px;
-    align-items: center;
 }
-
 .container > h2 {
     font-size: 24px;
     font-weight: 700;
     border-bottom: 2px solid;
     padding-bottom: 0.3rem;
-    color: #194be2ad;
+    color: white;
     margin-bottom: 4px;
     display: flex;
     margin-top: 2rem;
@@ -66,7 +64,7 @@ body{
     content: '';
     display: block;
     height: 4px;
-    background: linear-gradient(90deg, #00edf57a, #0b53ded9);
+    background: linear-gradient(90deg, #00dcec87, #ffffffd9);
     width: 100%;
 }
 
@@ -142,8 +140,10 @@ body{
 
 .card-wrapper {
     width: 82%;
+    border-radius: 14px;
     position: relative;
-    background: white;
+    border: 2px solid;
+    background: #183d64;
 }
 
 .card-wrapper:hover .card-arrow {

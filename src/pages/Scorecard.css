@@ -29,7 +29,7 @@ body {
     background: linear-gradient(135deg, #0d3b6e 0%, #1a2a4a 100%);
     border: 1px solid #1e5fa8;
     border-radius: 14px;
-    width: 100%;
+    width: 90%;
     padding: 20px 18px;
     text-align: center;
     display: flex;
@@ -62,7 +62,7 @@ body {
     background: #1a2535;
     border: 1px solid #2a3a52;
     border-radius: 12px;
-    width: 100%;
+    width: 90%;
     padding: 14px 16px;
     display: flex;
     align-items: center;
@@ -106,7 +106,7 @@ body {
   background: #1a2535;
   border: 1px solid #2a3a52;
   border-radius: 14px;
-  width: 100%;
+  width: 90%;
   overflow: hidden;
 }
 
