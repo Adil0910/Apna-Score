@@ -51,23 +51,23 @@ body {
     justify-content: center;
 }
 
-button.live-btn {
+.live-btn {
     padding-block: 0.5rem;
     background: #4f83ba;
     padding-inline: 2rem;
     color: white;
     border: none;
 }
-button.complete-btn {
+.complete-btn {
     padding-block: 0.5rem;
     padding-inline: 1rem;
     background: transparent;
     color: #4f83ba;
-    border: 0.1px solid;
+    border: 0.1px solid !important;
     font-weight: 600;
 }
 
-button.all-btn {
+.all-btn {
     padding-block: 0.5rem;
     border: none;
     padding-inline: 1rem;
