@@ -151,20 +151,21 @@ select {
     border-radius: 13px;
     color: black;
 }
-button.complete-btn {
-    background: white;
-    color: #4f83ba;
-    border: none;
-    font-size: 1rem;
-    border-radius: 3px;
-    padding-block: 0.7rem;
-    margin-top: 1rem;
-    padding-inline: 1.7rem;
-}
+
 .nav-create {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.complete-btn-result {
+    padding-block: 0.5rem;
+    background: transparent;
+    color: white;
+    border: 1px solid;
+    margin-top: 1rem;
+    font-weight: 600;
+    padding-inline: 1rem;
+    border-radius: 6px;
 }
 input {
     font-size: 1rem;

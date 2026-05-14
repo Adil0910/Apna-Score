@@ -11,6 +11,8 @@ const Live = () => {
   const [nextPlayerIndex, setNextPlayerIndex] = useState(null);
   const [showBowlerSelect, setShowBowlerSelect] = useState(false);
   const [newBowler, setNewBowler] = useState(null);
+  const [openingStriker, setOpeningStriker] = useState("");
+const [openingNonStriker, setOpeningNonStriker] = useState("");
 
   const userId = localStorage.getItem("userId");
   const matchRef = ref(db, `matches/${id}`);
@@ -37,7 +39,7 @@ const Live = () => {
 const batting = structuredClone(match[battingKey]);
 const bowling = structuredClone(match[bowlingKey]);
 
-  const currentBowler = match.current.bowler || 0;
+const currentBowler = match.current.bowler ?? null;
 
 const updateState = (data) => {
   const prevState = {
@@ -112,15 +114,15 @@ const undoLast = () => {
           wickets: 0,
           balls: 0,
           over: 0,
-          striker: 0,
-          nonStriker: 1,
-          nextPlayer: 2,
+         striker: null,
+nonStriker: null,
+nextPlayer: 0,
           history: [],
           battingTeam:
             match.current.battingTeam === match.teamA
               ? match.teamB
               : match.teamA,
-          bowler: 0,
+          bowler: null,
         },
       });
     } else {
@@ -215,6 +217,10 @@ if (newHistory.length > 6) newHistory = newHistory.slice(-6);
   };
 
   const addWicket = () => {
+    if (currentBowler === null) {
+  alert("Select bowler first");
+  return;
+}
     if (showBowlerSelect) {
       alert("Select new bowler first");
       return;
@@ -313,6 +319,10 @@ if (newHistory.length > 6) newHistory = newHistory.slice(-6);
   };
 
   const addNoBallRun = (run) => {
+    if (currentBowler === null) {
+  alert("Select bowler first");
+  return;
+}
     let { runs, striker, nonStriker, history = [] } = match.current;
     runs += 1 + run;
     batting[striker].batting.runs = (batting[striker].batting.runs || 0) + run;
@@ -332,6 +342,10 @@ if (newHistory.length > 6) newHistory = newHistory.slice(-6);
   };
 
   const addLegBye = (run) => {
+    if (currentBowler === null) {
+  alert("Select bowler first");
+  return;
+}
     if (showBowlerSelect) {
       alert("Select new bowler first");
       return;
@@ -377,6 +391,10 @@ if (newHistory.length > 6) newHistory = newHistory.slice(-6);
   };
 
   const addWicketRun = (run) => {
+    if (currentBowler === null) {
+  alert("Select bowler first");
+  return;
+}
     if (showBowlerSelect) {
       alert("Select new bowler first");
       return;
@@ -464,15 +482,19 @@ if (newHistory.length > 6) newHistory = newHistory.slice(-6);
     updateState({ "current/bowler": i });
   };
 
-  const confirmBowler = () => {
-    if (newBowler === null) {
-      alert("Select bowler");
-      return;
-    }
-    changeBowler(newBowler);
-    setShowBowlerSelect(false);
-    setNewBowler(null);
-  };
+const confirmBowler = () => {
+  if (newBowler === null) {
+    alert("Select bowler");
+    return;
+  }
+
+  updateState({
+    "current/bowler": newBowler,
+  });
+
+  setShowBowlerSelect(false);
+  setNewBowler(null);
+};
 
   const availablePlayers = batting.filter(
     (p, i) =>
@@ -485,6 +507,7 @@ if (newHistory.length > 6) newHistory = newHistory.slice(-6);
     .map((b, i) => ({ ...b, originalIndex: i }))
     .filter((b) => b.name && b.name.trim() !== "");
 
+
 const declareWinner = (winner) => {
   update(matchRef, { 
     winner,
@@ -492,6 +515,42 @@ const declareWinner = (winner) => {
   });
   alert(`${winner} Won 🏆`);
 };
+
+const confirmOpeners = () => {
+  if (
+    openingStriker === "" ||
+    openingNonStriker === ""
+  ) {
+    alert("Select both batsmen");
+    return;
+  }
+
+  if (openingStriker === openingNonStriker) {
+    alert("Both batsmen cannot be same");
+    return;
+  }
+
+  const updatedBatting = [...batting];
+
+  updatedBatting[openingStriker].status = "batting";
+  updatedBatting[openingNonStriker].status = "batting";
+
+  updateState({
+    [battingKey]: updatedBatting,
+    "current/striker": Number(openingStriker),
+    "current/nonStriker": Number(openingNonStriker),
+
+    "current/nextPlayer":
+      Math.max(
+        Number(openingStriker),
+        Number(openingNonStriker)
+      ) + 1,
+  });
+
+  // ✅ bowler select popup kholo
+  setShowBowlerSelect(true);
+};
+
   return (
     <div className="container">
       <div className="card score">
@@ -516,7 +575,44 @@ const declareWinner = (winner) => {
       </div>
 
       <div className="card">
-        <h3>Batting</h3>
+  <h3>Batting</h3>
+  { isAdmin && (match.current.striker == null ||
+    match.current.nonStriker == null) && (
+    <div className="card">
+      <h3>Select Opening Batsmen</h3>
+
+      <select
+        value={openingStriker}
+        onChange={(e) => setOpeningStriker(e.target.value)}
+      >
+        <option value="">Select Striker</option>
+
+        {batting.map((p, i) => (
+          <option key={i} value={i}>
+            {p.name}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={openingNonStriker}
+        onChange={(e) => setOpeningNonStriker(e.target.value)}
+      >
+        <option value="">Select Non-Striker</option>
+
+        {batting.map((p, i) => (
+          <option key={i} value={i}>
+            {p.name}
+          </option>
+        ))}
+      </select>
+
+      <button onClick={confirmOpeners}>
+        Start Innings
+      </button>
+    </div>
+  )}
+
         <div className="row striker">
           <span>
             {batting[match.current.striker]?.name || "Select Batsman"}*
@@ -535,7 +631,7 @@ const declareWinner = (winner) => {
             ({batting[match.current.nonStriker]?.batting?.balls ?? 0})
           </span>
         </div>
-        {showNextPlayer && availablePlayers.length > 0 && (
+        {isAdmin &&showNextPlayer && availablePlayers.length > 0 && (
           <div className="card">
             <h3>Select Next Batsman</h3>
             <select
@@ -561,16 +657,26 @@ const declareWinner = (winner) => {
       <div className="card-current-bowler">
         <h3 className="-head-cur-bowler">Current Bowler</h3>
         <div className="row">
-          <span>{bowling[currentBowler]?.name}</span>
+         <span>
+  {currentBowler !== null
+    ? bowling[currentBowler]?.name
+    : "Select Bowler"}
+</span>
           <span className="spn-bowler">
-            {bowling[currentBowler]?.bowling?.overs || "0.0"} -{" "}
-            {bowling[currentBowler]?.bowling?.runs || 0} -{" "}
-            {bowling[currentBowler]?.bowling?.wickets || 0}
+           {currentBowler !== null ? (
+  <>
+    {bowling[currentBowler]?.bowling?.overs || "0.0"} -
+    {bowling[currentBowler]?.bowling?.runs || 0} -
+    {bowling[currentBowler]?.bowling?.wickets || 0}
+  </>
+) : (
+  "No Bowler Selected"
+)}
           </span>
         </div>
       </div>
 
-      {showBowlerSelect && (
+      {isAdmin &&(showBowlerSelect || currentBowler === null) && (
         <div className="card">
           <h3>Select New Bowler</h3>
           <select onChange={(e) => setNewBowler(Number(e.target.value))}>
@@ -630,8 +736,11 @@ const declareWinner = (winner) => {
           ))}
         </div>
       </div>
-
-      {isAdmin && !match.winner && (
+{isAdmin &&
+ !match.winner &&
+ match.current.striker !== null &&
+ match.current.nonStriker !== null &&
+ match.current.bowler !== null && (
         <div className="card">
           <h3>Controls</h3>
           <div className="controls">

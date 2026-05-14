@@ -1,10 +1,4 @@
-body {
-    font-family: 'Segoe UI', 'Inter', sans-serif;
-    background: white !important;
-    color: #e8eaf0;
-    min-height: 100vh;
-    padding: 0px !important;
-}
+
 
 .navbar-box {
     width: 100%;
@@ -14,6 +8,10 @@ body {
     align-items: center;
     padding-block: 1rem;
     justify-content: space-around;
+}
+body {
+  background: white !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .search-box {
     width: 100%;
@@ -46,21 +44,22 @@ body {
 
 .create-box {
     width: 100%;
+    background: white;
     display: flex;
     margin-bottom: 1rem;
     justify-content: center;
 }
 
 .live-btn {
-    padding-block: 0.5rem;
+    padding-block: 0.5rem !important;
     background: #4f83ba;
-    padding-inline: 2rem;
+    padding-inline: 2rem !important;
     color: white;
     border: none;
 }
 .complete-btn {
-    padding-block: 0.5rem;
-    padding-inline: 1rem;
+    padding-block: 0.5rem !important;
+    padding-inline: 1rem !important;
     background: transparent;
     color: #4f83ba;
     border: 0.1px solid !important;
@@ -68,9 +67,9 @@ body {
 }
 
 .all-btn {
-    padding-block: 0.5rem;
+    padding-block: 0.5rem !important;
     border: none;
-    padding-inline: 1rem;
+    padding-inline: 1rem !important;
     color: white;
     background: #4f83ba;
 }

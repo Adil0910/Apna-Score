@@ -26,14 +26,14 @@ const [playersB, setPlayersB] = useState(["", "", "", "", ""]);
   localStorage.setItem("userId", userId);
 
   // 👉 Format players (same as tera old logic)
-  const formatPlayers = (players) => {
-    return players.map((name, i) => ({
-      name: name.trim(),
-      batting: { runs: 0, balls: 0 },
-      bowling: { runs: 0, balls: 0, wickets: 0, overs: "0.0" },
-      status: i < 2 ? "batting" : "yet",
-    }));
-  };
+const formatPlayers = (players) => {
+  return players.map((name) => ({
+    name: name.trim(),
+    batting: { runs: 0, balls: 0 },
+    bowling: { runs: 0, balls: 0, wickets: 0, overs: "0.0" },
+    status: "yet", // ✅ sab initially yet
+  }));
+};
 
   // 👉 Start button
   const handleStart = () => {
@@ -122,9 +122,9 @@ createdAt: Date.now(),
   current: {
     innings: 1,
     battingTeam: battingTeam,
-    striker: 0,
-    nonStriker: 1,
-    nextPlayer: 2,
+   striker: null,
+  nonStriker: null,
+  nextPlayer: 0,
     runs: 0,
     wickets: 0,
     over: 0,
@@ -146,7 +146,7 @@ createdAt: Date.now(),
   return (
     <>
     <div className="main-container-create">
-     <div className="nav-create"><button className="complete-btn" onClick={() => navigate(`/completed`)}>
+     <div className="nav-create"><button className="complete-btn-result" onClick={() => navigate(`/completed`)}>
   View Completed Matches
 </button></div>
     <div className="container-create">
